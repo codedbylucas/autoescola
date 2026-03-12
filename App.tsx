@@ -239,14 +239,14 @@ const App: React.FC = () => {
     const { stats } = currentUser;
 
     return (
-      <div className="space-y-6 animate-fadeIn">
-        <div className="flex justify-between items-center">
+      <div className="space-y-6 animate-fadeIn pb-20 md:pb-0">
+        <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
           <div>
-            <h1 className="text-3xl font-bold text-gray-800">Seu Progresso de Condutor</h1>
-            <p className="text-gray-500">Acompanhe sua jornada até a CNH, {currentUser.profile.name.split(' ')[0]}.</p>
+            <h1 className="text-2xl md:text-3xl font-bold text-gray-800">Seu Progresso de Condutor</h1>
+            <p className="text-sm md:text-base text-gray-500">Acompanhe sua jornada até a CNH, {currentUser.profile.name.split(' ')[0]}.</p>
           </div>
-          <div className="text-right">
-            <div className="text-sm font-medium text-blue-600 bg-blue-50 px-3 py-1 rounded-full inline-block">
+          <div className="md:text-right">
+            <div className="text-xs md:text-sm font-medium text-blue-600 bg-blue-50 px-3 py-1 rounded-full inline-block">
               {stats.modulesCompleted.length} de 5 Módulos
             </div>
           </div>
@@ -319,13 +319,13 @@ const App: React.FC = () => {
         <ChevronLeft size={20} /> Voltar ao Início
       </button>
 
-      <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 min-h-[400px]">
+      <div className="bg-white p-4 md:p-8 rounded-2xl shadow-sm border border-gray-100 min-h-[400px]">
         {isLoading ? (
-          <div className="flex flex-col items-center justify-center py-20 space-y-4">
-            <Loader2 className="animate-spin text-blue-600" size={48} />
-            <div className="text-center">
-              <p className="text-xl font-bold text-gray-800">Preparando sua aula...</p>
-              <p className="text-gray-500">Nossa IA está organizando os pontos que mais caem na prova.</p>
+          <div className="flex flex-col items-center justify-center py-10 md:py-20 space-y-4">
+            <Loader2 className="animate-spin text-blue-600" size={40} md:size={48} />
+            <div className="text-center px-4">
+              <p className="text-lg md:text-xl font-bold text-gray-800">Preparando sua aula...</p>
+              <p className="text-sm md:text-gray-500">Nossa IA está organizando os pontos que mais caem na prova.</p>
             </div>
             <div className="w-64 space-y-3 mt-8">
               <div className="h-4 bg-gray-100 rounded animate-pulse"></div>
@@ -371,15 +371,15 @@ const App: React.FC = () => {
     if (testMode.results) {
       const isApproved = (testMode.results.score / testMode.results.total) >= 0.7;
       return (
-        <div className="max-w-4xl mx-auto space-y-6 animate-fadeIn">
-          <div className={`p-8 rounded-2xl shadow-xl text-white flex justify-between items-center ${isApproved ? 'bg-green-600' : 'bg-red-500'}`}>
+        <div className="max-w-4xl mx-auto space-y-6 animate-fadeIn pb-24 md:pb-10">
+          <div className={`p-6 md:p-8 rounded-2xl shadow-xl text-white flex flex-col md:flex-row gap-4 md:justify-between md:items-center ${isApproved ? 'bg-green-600' : 'bg-red-500'}`}>
             <div>
-              <h2 className="text-3xl font-bold">{isApproved ? 'Aprovado!' : 'Continue Estudando'}</h2>
-              <p className="text-white/80 mt-1">Sua nota: {testMode.results.score} de {testMode.results.total} ({Math.round((testMode.results.score / testMode.results.total) * 100)}%)</p>
+              <h2 className="text-2xl md:text-3xl font-bold">{isApproved ? 'Aprovado!' : 'Continue Estudando'}</h2>
+              <p className="text-white/80 mt-1 text-sm md:text-base">Sua nota: {testMode.results.score} de {testMode.results.total} ({Math.round((testMode.results.score / testMode.results.total) * 100)}%)</p>
             </div>
-            <div className="bg-white/20 p-4 rounded-xl text-center">
-              <p className="text-xs uppercase font-bold tracking-wider opacity-70">Resultado</p>
-              <p className="text-2xl font-bold">{isApproved ? 'APTO' : 'NÃO APTO'}</p>
+            <div className="bg-white/20 p-3 md:p-4 rounded-xl text-center">
+              <p className="text-[10px] md:text-xs uppercase font-bold tracking-wider opacity-70">Resultado</p>
+              <p className="text-xl md:text-2xl font-bold">{isApproved ? 'APTO' : 'NÃO APTO'}</p>
             </div>
           </div>
 
@@ -416,16 +416,16 @@ const App: React.FC = () => {
             ))}
           </div>
 
-          <div className="flex gap-4">
+          <div className="flex flex-col md:flex-row gap-4">
             <button
               onClick={() => setActiveTab('ranking')}
-              className="flex-1 bg-amber-500 text-white font-bold py-4 rounded-xl hover:bg-amber-600 transition-colors shadow-lg shadow-amber-200 flex items-center justify-center gap-2"
+              className="w-full md:flex-1 bg-amber-500 text-white font-bold py-4 rounded-xl hover:bg-amber-600 transition-colors shadow-lg shadow-amber-200 flex items-center justify-center gap-2"
             >
               <Trophy size={20} /> Ver Ranking e Posição
             </button>
             <button
               onClick={() => setActiveTab('dashboard')}
-              className="flex-1 bg-white text-gray-700 font-bold py-4 rounded-xl border hover:bg-gray-50 transition-colors"
+              className="w-full md:flex-1 bg-white text-gray-700 font-bold py-4 rounded-xl border hover:bg-gray-50 transition-colors"
             >
               Voltar ao Início
             </button>
@@ -439,13 +439,13 @@ const App: React.FC = () => {
     if (!currentQ) return <div className="text-center py-10 text-gray-500">Erro ao carregar questões.</div>;
 
     return (
-      <div className="max-w-2xl mx-auto space-y-6 animate-fadeIn py-10">
-        <div className="flex justify-between items-center text-sm font-medium text-gray-500">
-          <span>{MODULES_INFO.find(m => m.id === selectedModule)?.name}</span>
-          <span className="flex items-center gap-2"><Clock size={16} /> Questão {testMode.currentQuestionIndex + 1}/{currentQuestions.length}</span>
+      <div className="max-w-2xl mx-auto space-y-6 animate-fadeIn py-6 md:py-10 pb-24 md:pb-10">
+        <div className="flex justify-between items-center text-sm font-medium text-gray-500 px-2 md:px-0">
+          <span className="truncate max-w-[150px]">{MODULES_INFO.find(m => m.id === selectedModule)?.name}</span>
+          <span className="flex items-center gap-2 whitespace-nowrap"><Clock size={16} /> {testMode.currentQuestionIndex + 1}/{currentQuestions.length}</span>
         </div>
 
-        <div className="bg-white p-8 rounded-2xl shadow-xl border border-gray-100 relative">
+        <div className="bg-white p-6 md:p-8 rounded-2xl shadow-xl border border-gray-100 relative">
           <div className="absolute top-0 left-0 w-full h-2 bg-gray-100 rounded-t-2xl overflow-hidden">
             <div
               className="h-full bg-blue-600 transition-all duration-300"
@@ -453,8 +453,8 @@ const App: React.FC = () => {
             ></div>
           </div>
 
-          <p className="text-xs font-bold text-blue-600 mb-4 uppercase tracking-widest mt-2">Questão {testMode.currentQuestionIndex + 1} de {currentQuestions.length}</p>
-          <h2 className="text-xl font-bold text-gray-800 mb-8 leading-tight">{currentQ.text}</h2>
+          <p className="text-[10px] md:text-xs font-bold text-blue-600 mb-4 uppercase tracking-widest mt-2 px-1">Questão {testMode.currentQuestionIndex + 1} de {currentQuestions.length}</p>
+          <h2 className="text-lg md:text-xl font-bold text-gray-800 mb-6 md:mb-8 leading-tight px-1">{currentQ.text}</h2>
 
           <div className="space-y-3">
             {currentQ.options.map((opt, idx) => (
@@ -463,10 +463,12 @@ const App: React.FC = () => {
                 onClick={() => handleAnswer(idx)}
                 className="w-full text-left p-4 rounded-xl border-2 border-gray-100 hover:border-blue-500 hover:bg-blue-50 transition-all group relative active:scale-[0.99]"
               >
-                <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-gray-100 group-hover:bg-blue-200 text-gray-600 group-hover:text-blue-700 font-bold mr-4 text-sm transition-colors">
-                  {String.fromCharCode(65 + idx)}
-                </span>
-                <span className="text-gray-700 font-medium">{opt}</span>
+                <div className="flex items-start">
+                  <span className="inline-flex items-center justify-center w-7 h-7 md:w-8 md:h-8 rounded-lg bg-gray-100 group-hover:bg-blue-200 text-gray-600 group-hover:text-blue-700 font-bold mr-3 md:mr-4 text-xs md:text-sm transition-colors flex-shrink-0">
+                    {String.fromCharCode(65 + idx)}
+                  </span>
+                  <span className="text-gray-700 font-medium text-sm md:text-base">{opt}</span>
+                </div>
               </button>
             ))}
           </div>
@@ -545,7 +547,8 @@ const App: React.FC = () => {
     <ErrorBoundary>
       <div className="min-h-screen bg-slate-50 flex flex-col md:flex-row">
         {/* Sidebar - Navigation */}
-        <aside className="w-full md:w-64 bg-white border-r border-gray-200 flex-shrink-0 z-20 flex flex-col min-h-screen">
+        {/* Sidebar - Desktop Navigation */}
+        <aside className="hidden md:flex md:w-64 bg-white border-r border-gray-200 flex-shrink-0 z-20 flex-col min-h-screen">
           <div className="p-6">
             <div className="flex items-center gap-2 mb-8">
               <div className="bg-blue-600 p-2 rounded-lg text-white">
@@ -600,6 +603,45 @@ const App: React.FC = () => {
           </div>
         </aside>
 
+        {/* Mobile Header */}
+        <header className="md:hidden bg-white border-b border-gray-100 px-4 py-3 sticky top-0 z-30 flex justify-between items-center">
+          <div className="flex items-center gap-2">
+            <div className="bg-blue-600 p-1.5 rounded-lg text-white">
+              <GraduationCap size={18} />
+            </div>
+            <span className="font-bold text-lg text-gray-800">AutoAI Pro</span>
+          </div>
+          <button
+            onClick={handleLogout}
+            className="p-2 text-gray-500 hover:text-red-600 transition-colors"
+          >
+            <LogOut size={20} />
+          </button>
+        </header>
+
+        {/* Mobile Bottom Navigation */}
+        <nav className="md:hidden fixed bottom-0 left-0 w-full bg-white border-t border-gray-100 px-2 py-2 flex justify-around items-center z-40 shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
+          {[
+            { id: 'dashboard', label: 'Início', icon: <LayoutDashboard size={20} /> },
+            { id: 'analytics', label: 'Estat.', icon: <BarChart3 size={20} /> },
+            { id: 'ranking', label: 'Ranking', icon: <Trophy size={20} /> },
+            { id: 'profile', label: 'Perfil', icon: <UserIcon size={20} /> },
+          ].map(item => (
+            <button
+              key={item.id}
+              onClick={() => { setActiveTab(item.id as any); setTestMode({ ...testMode, active: false }); }}
+              className={`flex flex-col items-center gap-1 transition-all flex-1 py-1 ${activeTab === item.id
+                ? 'text-blue-600'
+                : 'text-gray-400'
+                }`}
+            >
+              {item.icon}
+              <span className="text-[10px] font-bold">{item.label}</span>
+              {activeTab === item.id && <span className="w-1 h-1 rounded-full bg-blue-600 mt-0.5"></span>}
+            </button>
+          ))}
+        </nav>
+
         {/* Main Content Area */}
         <main className="flex-1 p-4 md:p-8 overflow-y-auto">
           <div className="max-w-6xl mx-auto">
@@ -614,10 +656,10 @@ const App: React.FC = () => {
 
         {/* Floating Action for Mobile */}
         {activeTab !== 'test' && (
-          <div className="fixed bottom-6 right-6 md:hidden">
+          <div className="fixed bottom-20 right-6 md:bottom-6 md:right-6 md:hidden">
             <button
               onClick={() => handleStartTest(ModuleId.SIMULADO_FINAL)}
-              className="bg-blue-600 text-white p-4 rounded-full shadow-2xl flex items-center justify-center"
+              className="bg-blue-600 text-white p-4 rounded-full shadow-2xl flex items-center justify-center animate-bounce"
             >
               <ClipboardCheck size={28} />
             </button>
